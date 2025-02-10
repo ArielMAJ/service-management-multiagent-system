@@ -19,7 +19,7 @@ class Simulation:
         simulator = esp.Simulator(
             tick_duration=1,
             tick_unit="seconds",
-            stopping_criterion=lambda model: model.schedule.steps == 10,
+            stopping_criterion=self.stopping_criterion,
             resource_management_algorithm=self.algorithm,
         )
 
@@ -28,6 +28,15 @@ class Simulation:
         )
 
         simulator.run_model()
+
+    def stopping_criterion(self, model):
+        remaining_services_awaiting_placement_in_an_edge_server: list[esp.Service] = [
+            service for service in esp.Service.all() if service.server
+        ]
+        return (
+            model.schedule.steps == 10
+            or not remaining_services_awaiting_placement_in_an_edge_server  # noqa
+        )
 
     @property
     def algo_name(self):
