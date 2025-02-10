@@ -23,18 +23,27 @@ class Simulation:
             resource_management_algorithm=self.algorithm,
         )
 
-        simulator.initialize(
-            input_file="https://raw.githubusercontent.com/EdgeSimPy/edgesimpy-tutorials/master/datasets/sample_dataset1.json"  # noqa
-        )
+        simulator.initialize(input_file="./datasets/sample1.json")
 
+        for user in esp.User.all():
+            logger.info(user.coordinates)
+        for server in esp.EdgeServer.all():
+            logger.warning(server.coordinates)
         simulator.run_model()
+
+        for user in esp.User.all():
+            logger.info(user.coordinates)
+        for server in esp.EdgeServer.all():
+            logger.warning(server.coordinates)
+        for service in esp.Service.all():
+            logger.error(service.agent.coordinates)
 
     def stopping_criterion(self, model):
         remaining_services_awaiting_placement_in_an_edge_server: list[esp.Service] = [
-            service for service in esp.Service.all() if service.server
+            service for service in esp.Service.all() if not service.server
         ]
         return (
-            model.schedule.steps == 10
+            model.schedule.steps == 100
             or not remaining_services_awaiting_placement_in_an_edge_server  # noqa
         )
 
