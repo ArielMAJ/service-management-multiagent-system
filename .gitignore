@@ -164,7 +164,7 @@ cython_debug/
 
 *.csv
 *.msgpack
-*.png
+# *.png
 *.pdf
 
 results/
