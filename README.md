@@ -18,3 +18,47 @@ The approach leverages multi-agent cooperation to enhance decision-making as to 
 
 - Run the project:
   - `make run`
+
+## Description
+
+SMMS is a **multi-agent system** designed for **service allocation and migration in Edge Computing environments**, optimizing **latency, resource usage, and server efficiency**. It dynamically distributes services across edge servers based on user proximity and infrastructure constraints.
+
+## Visual representation of the system
+
+![](docs/alocacao-servicos.png)
+
+Visual example of service allocation: one user, two edge servers, one service allocated on a server, and another service to be allocated near the requesting user.
+
+## Tropos diagram
+
+![](docs/mod-tropos-architectural.png)
+
+A Tropos diagram is a goal-oriented modeling approach used in agent-oriented software development. It is part of the Tropos methodology, which is based on the i\* (iStar) framework and focuses on early requirements analysis, design, and implementation of software systems.
+
+## Features
+
+- **Dynamic Service Allocation**: Agents autonomously allocate and migrate services based on user location.
+- **Latency Optimization**: Reduces response time by provisioning services closer to users.
+- **Resource Efficiency**: Minimizes server power consumption and workload imbalance.
+- **Scalability**: Supports multiple agents managing distributed edge servers.
+
+## How It Works
+
+- Each **Containerized Service Agent (CSA)** represents a service and interacts with other agents, servers, and users.
+- Agents monitor **user movement** and **infrastructure conditions**, triggering migrations when beneficial.
+- Implemented and validated using **EdgeSimPy** for simulated experimentation.
+
+## Results
+
+![](docs/thea-vs-smms.png)
+
+SMMS outperforms the **Thea** algorithm, achieving:
+✔ **Lower latency**
+✔ **Lower SLA violations**
+✔ **Reduced power consumption**
+✔ **Optimized server utilization**
+
+## **Next Steps**
+
+- **Advanced heuristics** for user mobility prediction.
+- **Privacy-aware service allocation mechanisms**.
